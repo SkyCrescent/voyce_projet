@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { FiLock, FiUser } from "react-icons/fi";
 import axios from  'axios'
 import {useRouter} from "next/navigation";
+import logo from "@/public/logo.png"
 export default function SplashLogin() {
     const [mounted, setMounted] = useState(false);
     const [colorIndex, setColorIndex] = useState(0);
@@ -195,7 +196,7 @@ export default function SplashLogin() {
                     {/* Logo au centre */}
                     <Image
                         className="dark:invert"
-                        src="/logo.PNG"
+                        src={logo.src}
                         alt="logo"
                         width={180}
                         height={150}
