@@ -6,6 +6,9 @@ import { FiLock, FiUser } from "react-icons/fi";
 import axios from  'axios'
 import {useRouter} from "next/navigation";
 import logo from "@/public/logo.png"
+import salutation from "@/public/16406024.png"
+import voyce from "../public/Voyce.png"
+import Copy from "../public/nom.png"
 export default function SplashLogin() {
     const [mounted, setMounted] = useState(false);
     const [colorIndex, setColorIndex] = useState(0);
@@ -223,8 +226,8 @@ export default function SplashLogin() {
 
                         {/* Icône de salutation */}
                         <div className="opacity-60">
-                            <img
-                                src="/16406024.png"
+                            <Image
+                                src={salutation.src}
                                 alt="salutation"
                                 width={160}
                                 height={100}
@@ -235,7 +238,7 @@ export default function SplashLogin() {
                         {/* Logo principal */}
                         <Image
                             className="dark:invert -mt-16 opacity-900"
-                            src="/Voyce.PNG"
+                            src={voyce.src}
                             alt="Logo VOYCE"
                             width={190}
                             height={160}
@@ -303,7 +306,7 @@ export default function SplashLogin() {
 
                             <Image
                                 className="dark:invert mt-6"
-                                src="/nom copy.PNG"
+                                src={Copy.src}
                                 alt="Logo VOYCE"
                                 width={100}
                                 height={120}

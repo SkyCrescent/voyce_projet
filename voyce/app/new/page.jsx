@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
-
+import logo from  "../../public/logo.png"
 export default function CreateAccount() {
     const [values, setValues] = useState({
         nom: "",
@@ -224,7 +224,7 @@ const [ButtonEnabled, SetButtonEnabled] = useState(false)
                     {/* Logo en haut à droite */}
                     <div className="absolute top-0 right-10 opacity-90 hover:opacity-100 transition duration-300">
                         <Image
-                            src="/logo.PNG"
+                            src={logo.src}
                             alt="Logo VOYCE"
                             width={160}
                             height={140}

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { FiPlus } from "react-icons/fi";
-
+import logo from "@/public/logo.png"
 export default function ConversationList() {
     const [search, setSearch] = useState("");
 
@@ -13,21 +13,21 @@ export default function ConversationList() {
             contact: "Aline",
             lastMsg: "D’accord merci !",
             date: "12:45",
-            photo: "/roman-reigns-1.PNG",
+            photo: { src: "/roman-reigns-1.PNG" },
         },
         {
             id: 2,
             contact: "Jean",
             lastMsg: "On se voit demain ?",
             date: "11:20",
-            photo: "/goku.JPG",
+            photo: { src: "/goku.JPG" },
         },
         {
             id: 3,
             contact: "Maman",
             lastMsg: "Tu as mangé ?",
             date: "Hier",
-            photo: "/goku.JPG",
+            photo: { src: "/goku.JPG" },
         },
     ];
 
@@ -57,7 +57,7 @@ export default function ConversationList() {
                     className="flex items-center justify-between pr-2 border-b border-gray-200 bg-white/70 backdrop-blur-sm">
                     <div className="flex items-center gap-2">
                         <Image
-                            src="/logo.PNG"
+                            src={logo.src}
                             alt="logo"
                             width={60}
                             height={50}
@@ -85,11 +85,14 @@ export default function ConversationList() {
                             {/* Photo bien ronde */}
                             <div
                                 className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-300 bg-gray-100">
-                                <img
-                                    src={c.photo}
+                                <Image
+                                    src={`${c.photo.src}`}
                                     alt={c.contact}
+                                    width={55}
+                                    height={55}
                                     className="w-full h-full object-cover"
                                 />
+
 
                                 {/* Logo en bas à droite */}
                                 <div
