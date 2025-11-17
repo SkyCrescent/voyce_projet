@@ -6,7 +6,7 @@ export default function MessageView() {
         name: "Aline",
         number: "+242 06 123 45 67",
         status: "En ligne",
-        photo: "/roman-reigns-1.PNG",
+        photo: "@/public/roman-reigns-1.PNG",
     };
 
     const messages = [
