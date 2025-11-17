@@ -27,7 +27,7 @@ export default function MessageView() {
                 <div className="flex items-center gap-3 ">
                     <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 border">
                         <Image
-                            src={contact.photo}
+                            src={contact.photo.src}
                             alt={contact.name}
                             width={48}
                             height={48}
