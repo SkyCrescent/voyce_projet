@@ -164,7 +164,7 @@ export default function SplashLogin() {
         <div className="relative flex items-center justify-center min-h-screen bg-white font-sans">
 
             {/* 🔹 Image de fond */}
-            <div className="absolute inset-0 bg-[url('/oralisme_moyen-min.jpg')] bg-cover bg-center opacity-50"/>
+            <div className="absolute inset-0 bg-[url('/langue-signes-masques.JPG')] bg-cover bg-center opacity-60"/>
 
             {/* Dégradé beaucoup plus visible */}
             <div className="absolute inset-0 bg-gradient-to-bl

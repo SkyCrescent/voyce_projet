@@ -17,15 +17,12 @@ export default function CreateAccount() {
 const [ButtonEnabled, SetButtonEnabled] = useState(false)
     const [focus, SetFocus] = useState(false);
     const [focus2 , SetFocus2] = useState(false)
-    const [focus3 , SetFocus3] = useState(false)
+  //  const [focus3 , SetFocus3] = useState(false)
     const [focus4 , SetFocus4] = useState(false)
 
-    const [focus5 , SetFocus5] = useState(false)
-    const [focus6 , SetFocus6] = useState(false)
-    const [focus7 , SetFocus7] = useState(false)
+
     const [focus8 , SetFocus8] = useState(false)
     const [focus9 , SetFocus9] = useState(false)
-    const [focus10 , SetFocus10] = useState(false)
     const [selectedImage , SetselectedImage] = useState(false)
     const [selectedImage2, setSelectedImage2] = useState("");
     let url1 ="";
@@ -208,7 +205,7 @@ const [ButtonEnabled, SetButtonEnabled] = useState(false)
         <div className="relative flex min-h-screen items-center justify-center font-sans">
             {/* Background */}
             {/* Image d’arrière-plan avec opacité plus forte */}
-            <div className="absolute inset-0 bg-[url('/oralisme_moyen-min.jpg')] bg-cover bg-center opacity-50" />
+            <div className="absolute inset-0 bg-[url('/langue-signes-masques.JPG')] bg-cover bg-center opacity-60" />
 
             {/* Dégradé beaucoup plus visible */}
             <div className="absolute inset-0 bg-gradient-to-bl
