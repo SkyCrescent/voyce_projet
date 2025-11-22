@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
 import logo from  "../../public/logo.png"
+import fond from "@/public/langue-signes-masques.jpg";
+
 export default function CreateAccount() {
     const [values, setValues] = useState({
         nom: "",
@@ -205,13 +207,14 @@ const [ButtonEnabled, SetButtonEnabled] = useState(false)
         <div className="relative flex min-h-screen items-center justify-center font-sans">
             {/* Background */}
             {/* Image d’arrière-plan avec opacité plus forte */}
-            <div className="absolute inset-0 bg-[url('/langue-signes-masques.JPG')] bg-cover bg-center opacity-60" />
+            {/*<div className="absolute inset-0 bg-[url('/langue-signes-masques.JPG')] bg-cover bg-center opacity-60" />*/}
+            <img src={fond.src} alt="Logo" className="absolute inset-0 object-cover w-full h-full opacity-60"/>
 
             {/* Dégradé beaucoup plus visible */}
             <div className="absolute inset-0 bg-gradient-to-bl
                 from-green-900/80
                 via-white/50
-                to-pink-600/50" />
+                to-pink-600/50"/>
 
             <div className="relative z-10 flex flex-col items-center justify-center w-full px-4">
                 {/* Ligne supérieure : image ronde à gauche + logo centré */}
@@ -260,7 +263,8 @@ const [ButtonEnabled, SetButtonEnabled] = useState(false)
                 {/* Texte descriptif */}
                 {/* text-gray-500 text-center text-sm */}
                 <p className="text-center text-gray-900 text-[15px] font-medium mb-4">
-                   Renseigner vos informations ci-dessous et rejoignez la communauté <span className="text-green-500" >VOYCE</span> .
+                    Renseigner vos informations ci-dessous et rejoignez la communauté <span
+                    className="text-green-500">VOYCE</span> .
                 </p>
 
                 <div className="relative w-[58%] space-y-6">
@@ -407,8 +411,6 @@ const [ButtonEnabled, SetButtonEnabled] = useState(false)
             </div>
 
 
-
-
             {dialog.open && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-[999]">
                     <div className="bg-white rounded-xl shadow-lg p-6 w-[350px] text-center">
@@ -420,7 +422,7 @@ const [ButtonEnabled, SetButtonEnabled] = useState(false)
                         <p className="text-gray-700 mb-4">{dialog.message}</p>
 
                         <button
-                            onClick={() => setDialog({ ...dialog, open: false })}
+                            onClick={() => setDialog({...dialog, open: false})}
                             className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 hover:scale-105 transition duration-300 transform cursor-pointer w-25"
                         >
                             OK
