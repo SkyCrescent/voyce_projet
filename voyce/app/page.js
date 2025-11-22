@@ -8,6 +8,7 @@ import {useRouter} from "next/navigation";
 import logo from "@/public/logo.png"
 import salutation from "@/public/16406024.png"
 import voyce from "../public/Voyce.png"
+import fond from "../public/langue-signes-masques.jpg"
 import Copy from "../public/nom.png"
 export default function SplashLogin() {
     const [mounted, setMounted] = useState(false);
@@ -164,7 +165,9 @@ export default function SplashLogin() {
         <div className="relative flex items-center justify-center min-h-screen bg-white font-sans">
 
             {/* 🔹 Image de fond */}
-            <div className="absolute inset-0 bg-[url('/langue-signes-masques.JPG')] bg-cover bg-center opacity-60"/>
+            {/*<div className="absolute inset-0 bg-[url('/langue-signes-masques.JPG')] bg-cover bg-center opacity-60"/>*/}
+
+            <img src={fond.src} alt="Logo" className="absolute inset-0 object-cover w-full h-full opacity-60"/>
 
             {/* Dégradé beaucoup plus visible */}
             <div className="absolute inset-0 bg-gradient-to-bl

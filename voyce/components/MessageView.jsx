@@ -47,10 +47,7 @@ export default function MessageView() {
             </div>
 
             {/* 🔹 MESSAGES */}
-            <div className="flex-1 overflow-y-auto p-3 bg-gradient-to-bl
-                from-green-900/80
-                via-white/50
-                to-pink-600/50">
+            <div className="flex-1 overflow-y-auto p-3 bg-gradient-to-bl from-green-900/80 via-white/50 to-pink-600/50">
                 {messages.map((m) => (
                     <div
                         key={m.id}
