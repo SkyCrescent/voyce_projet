@@ -3,7 +3,10 @@
 import Image from "next/image";
 import { useState } from "react";
 import {FiPlus, FiSearch} from "react-icons/fi";
-import logo from "@/public/logo.png"
+import logo from "../public/logo.png"
+import img1 from "../public/roman-reigns-1.png";
+import img2 from "../public/goku.jpg";
+
 export default function ConversationList() {
     const [search, setSearch] = useState("");
     const [focus, SetFocus] = useState(false);
@@ -14,21 +17,21 @@ export default function ConversationList() {
             contact: "Aline",
             lastMsg: "D’accord merci !",
             date: "12:45",
-            photo: { src: "/roman-reigns-1.PNG" },
+            photo: img1,
         },
         {
             id: 2,
             contact: "Jean",
             lastMsg: "On se voit demain ?",
             date: "11:20",
-            photo: { src: "/goku.JPG" },
+            photo: img2,
         },
         {
             id: 3,
             contact: "Maman",
             lastMsg: "Tu as mangé ?",
             date: "Hier",
-            photo: { src: "/goku.JPG" },
+            photo: img2,
         },
     ];
 
@@ -76,8 +79,7 @@ export default function ConversationList() {
                                 onBlur={() => SetFocus(false)}
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="w-full border border-gray-300 rounded-lg py-2 pl-9 pr-3 text-sm
-                       focus:outline-none focus:border-blue-500 bg-white/80"    />
+                                className="w-full border border-gray-300 rounded-lg py-2 pl-9 pr-3 text-sm focus:outline-none focus:border-blue-500 bg-white/80"    />
                             <span
                                 className={focus || search? "absolute left-4 p-1 w-auto top-3 text-xs font-normal text-sky-600 -translate-y-8 duration-300" : "absolute tracking-wide pointer-events-none duration-300 left-3 top-2   pl-7 text-[14px] text-sky-600"}> Rechercher </span>
 
@@ -94,7 +96,7 @@ export default function ConversationList() {
                             <div
                                 className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-300 bg-gray-100">
                                 <Image
-                                    src={`${c.photo.src}`}
+                                    src={c.photo}
                                     alt={c.contact}
                                     width={55}
                                     height={55}

@@ -1,12 +1,12 @@
 import Image from "next/image";
 import { FiMoreVertical } from "react-icons/fi";
-
+import photo1 from "@/public/roman-reigns-1.png";
 export default function MessageView() {
     const contact = {
         name: "Aline",
         number: "+242 06 123 45 67",
         status: "En ligne",
-        photo: "@/public/roman-reigns-1.PNG",
+        photo: photo1,
     };
 
     const messages = [
@@ -27,7 +27,7 @@ export default function MessageView() {
                 <div className="flex items-center gap-3 ">
                     <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200 border">
                         <Image
-                            src={contact.photo.src}
+                            src={contact.photo}
                             alt={contact.name}
                             width={48}
                             height={48}

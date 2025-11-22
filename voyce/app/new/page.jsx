@@ -259,7 +259,7 @@ const [ButtonEnabled, SetButtonEnabled] = useState(false)
                 {/* Form container */}
                 {/* Texte descriptif */}
                 {/* text-gray-500 text-center text-sm */}
-                <p className="text-center text-gray-500 text-[15px] font-medium mb-4">
+                <p className="text-center text-gray-900 text-[15px] font-medium mb-4">
                    Renseigner vos informations ci-dessous et rejoignez la communauté <span className="text-green-500" >VOYCE</span> .
                 </p>
 
@@ -376,7 +376,7 @@ const [ButtonEnabled, SetButtonEnabled] = useState(false)
                                 SetButtonEnabled(!ButtonEnabled)
                             }}
                         />
-                        <label htmlFor="policy" className="text-gray-700 text-sm">
+                        <label htmlFor="policy" className="text-gray-900 text-sm">
                             J'accepte la politique de confidentialité
                         </label>
                     </div>
@@ -397,7 +397,7 @@ const [ButtonEnabled, SetButtonEnabled] = useState(false)
 
 
                     {/* Texte descriptif en bas */}
-                    <p className="text-gray-500 text-center text-sm mt-2">
+                    <p className="text-gray-900 text-center text-sm mt-2">
                         En vous inscrivant, vous acceptez nos conditions d'utilisation et la politique de
                         confidentialité.
                     </p>
