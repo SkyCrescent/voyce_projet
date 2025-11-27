@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FiMoreVertical } from "react-icons/fi";
+import {FiMoreVertical, FiTrash2, FiUserMinus} from "react-icons/fi";
 import photo1 from "@/public/roman-reigns-1.png";
 export default function MessageView() {
     const contact = {
@@ -19,7 +19,6 @@ export default function MessageView() {
         <div className="h-full  flex flex-col ">
 
 
-
             {/* 🔹 HEADER : Infos du contact */}
             <div className="flex items-center justify-between px-4 py-3  bg-gray-500/10  shadow-sm">
 
@@ -29,57 +28,100 @@ export default function MessageView() {
                         <Image
                             src={contact.photo}
                             alt={contact.name}
-                            width={48}
-                            height={48}
+                            width={50}
+                            height={50}
                             className="object-cover w-full h-full"
                         />
                     </div>
 
-                    <div className="leading-tight">
+                    <div className="leading-tight font-sans">
                         <p className="font-semibold text-gray-800 text-[15px]">{contact.name}</p>
-                        <p className="text-[12px] text-gray-500">{contact.number}</p>
-                        <p className="text-[11px] text-green-600">{contact.status}</p>
+                        <p className="text-[11px] text-gray-500">{contact.number} / <span
+                            className="text-green-600"> {contact.status}</span></p>
+                        {/*<p className="text-[10px] text-green-600"></p>*/}
                     </div>
                 </div>
 
                 {/* Icône plus d’infos */}
-                <FiMoreVertical size={22} className="text-gray-700 cursor-pointer" />
+                <div className="flex items-center gap-4">
+
+                    {/* Icône supprimer en rouge */}
+                    <div
+                        className="
+                        p-2 rounded-full
+                        hover:bg-gray-300/20
+                        transition cursor-pointer
+                    ">
+                    <FiTrash2
+                        size={18}
+                        className="text-gray-700 hover:text-red-500 transition"
+                        title="Supprimer cette conversation"
+                    />
+                </div>
+                    {/* Icône retirer des amis */}
+                    <div
+                        className="
+        p-2 rounded-full
+        hover:bg-gray-300/20
+        transition cursor-pointer
+    "
+                    >
+                        <FiUserMinus
+                            size={18}
+                            className="text-gray-700 hover:text-red-600 transition"
+                            title="Retirer de la liste d'amis"
+                        />
+                    </div>
+
+
+                </div>
+
             </div>
 
             {/* 🔹 MESSAGES */}
+            {/* 🔹 MESSAGES */}
             <div className="flex-1 overflow-y-auto p-3 bg-gradient-to-bl from-green-900/80 via-white/50 to-pink-600/50">
-                {messages.map((m) => (
-                    <div
-                        key={m.id}
-                        className={`mb-5 flex ${
-                            m.from === "me" ? "justify-end" : "justify-start"
-                        }`}
-                    >
 
-                        <div className="max-w-[70%]">
-                            <p
-                                className={`px-3 py-2 text-base font-light text-[15px] rounded-xl ${
-                                    m.from === "me"
-                                        ? "bg-blue-600 text-white"
-                                        : "bg-gray-200 text-gray-800"
-                                }`}
-                            >
-                                {m.text}
-                            </p>
+                {messages.map((m, index) => {
+                    const isMe = m.from === "me";
 
-                            {/* 🔹 Date / heure d’envoi */}
-                            <p
-                                className={`text-[10px] mt-1 ${
-                                    m.from === "me"
-                                        ? "text-right text-gray-200"
-                                        : "text-left text-gray-500"
-                                }`}
+                    return (
+                        <div
+                            key={m.id}
+                            className={`mb-4 flex animate-fadeSlide ${isMe ? "justify-end" : "justify-start"}`}
+                            style={{animationDelay: `${index * 40}ms`}}
+                        >
+                        <div
+                                className={`
+                        max-w-[70%] px-3 py-2 rounded-2xl shadow-md font-sans
+                        flex items-end gap-2
+                        ${isMe
+                                    ? "bg-sky-900/80 text-white rounded-br-sm"
+                                    : "bg-gray-100/90 text-gray-900 rounded-bl-sm"
+                                }
+                    `}
                             >
-                                {m.time}
-                            </p>
+                                {/* Heure (si message reçu → LEFT / si message envoyé → RIGHT) */}
+                                {!isMe && (
+                                    <span className="text-[10px] text-gray-500 mb-[1px] whitespace-nowrap">
+                            {m.time}
+                        </span>
+                                )}
+
+                                {/* Texte */}
+                                <p className="text-[14px] leading-snug break-words">
+                                    {m.text}
+                                </p>
+
+                                {isMe && (
+                                    <span className="text-[10px] text-gray-300 mb-[1px] whitespace-nowrap">
+                            {m.time}
+                        </span>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
 
             </div>
 

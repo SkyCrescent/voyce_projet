@@ -10,7 +10,7 @@ import img2 from "../public/goku.jpg";
 export default function ConversationList() {
     const [search, setSearch] = useState("");
     const [focus, SetFocus] = useState(false);
-
+    const [hover,SetHover] = useState(false)
     const conversations = [
         {
             id: 1,
@@ -67,7 +67,7 @@ export default function ConversationList() {
                     <div className="relative">
                         <span className="absolute left-1 top-1/2 -translate-y-1/2 text-gray-400">
                               <FiSearch
-                                  className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                                  className="absolute left-3 top-1/2 -translate-y-1/2 text-black"
                                   size={18}
                               />
                         </span>
@@ -79,62 +79,57 @@ export default function ConversationList() {
                                 onBlur={() => SetFocus(false)}
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="w-full border border-gray-300 rounded-lg py-2 pl-9 pr-3 text-sm focus:outline-none focus:border-blue-500 bg-white/80"    />
+                                className="w-full border border-gray-300 rounded-lg py-2 pl-9 pr-3 text-sm text-black focus:outline-none focus:border-blue-500 bg-white/80"    />
                             <span
                                 className={focus || search? "absolute left-4 p-1 w-auto top-3 text-xs font-normal text-sky-600 -translate-y-8 duration-300" : "absolute tracking-wide pointer-events-none duration-300 left-3 top-2   pl-7 text-[14px] text-sky-600"}> Rechercher </span>
 
                         </div>
+
                 </div>
                 {/* 🔹 LISTE DES CONVERSATIONS */}
                 <div className="flex-1 overflow-y-auto p-1 font-roboto">
                     {filteredConversations.map((c) => (
                         <div
                             key={c.id}
-                            className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/70 cursor-pointer"
+                            className="flex items-center gap-3 p-3 mb-1 rounded-lg hover:bg-white/70 cursor-pointer shadow-md  "
                         >
                             {/* Photo bien ronde */}
                             <div
-                                className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-300 bg-gray-100">
-                                <Image
-                                    src={c.photo}
-                                    alt={c.contact}
-                                    width={55}
-                                    height={55}
-                                    className="w-full h-full object-cover"
-                                />
+                                className="flex items-center justify-between gap-4   rounded-lg hover:bg-white/70 cursor-pointer group">
+                                {/* Photo qui s’agrandit uniquement au hover */}
+                                <div
+                                    className="relative w-12 h-12 rounded-full overflow-hidden border border-gray-300 bg-gray-100 transition-transform duration-300 group-hover:scale-105">
+                                    <Image
+                                        src={c.photo}
+                                        alt={c.contact}
+                                        width={55}
+                                        height={55}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
 
+                                {/* Texte - ne s’agrandit pas */}
+                                <div className="flex flex-col justify-center font-sans flex-1 leading-tight transition-transform duration-300 group-hover:scale-105">
+                                    <p className="font-semibold text-black text-[15px]">{c.contact}</p>
+                                    <p className="text-[12px] text-sky-800/90 mt-1 truncate">{c.lastMsg}</p>
+                                </div>
 
-                                {/* Logo en bas à droite */}
-                                {/*<div*/}
-                                {/*    className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-white flex items-center justify-center shadow">*/}
-                                {/*    <Image*/}
-                                {/*        src={logo.src}*/}
-                                {/*        alt="logo"*/}
-                                {/*        width={18}*/}
-                                {/*        height={18}*/}
-                                {/*    />*/}
-                                {/*</div>*/}
+                                {/* Date */}
+                                <span className="absolute text-[11px] mt-3 right-4 text-gray-900 ">{c.date}</span>
                             </div>
-
-                            <div className="flex flex-col justify-center flex-1 leading-tight">
-                                <p className="font-semibold text-sky-600 text-[15px]">{c.contact}</p>
-                                <p className="text-[12px] text-gray-700 font-light truncate">{c.lastMsg}</p>
-                            </div>
-
-                            <span className="text-xs text-gray-800">{c.date}</span>
                         </div>
                     ))}
 
                     {filteredConversations.length === 0 && (
-                        <p className="text-center text-gray-200 mt-4">Aucune conversation</p>
+                        <p className="text-center text-black text-sm text-underline font-gotham mt-4">
+                            Aucune conversation
+                        </p>
                     )}
+
                 </div>
-
-                {/* 🔹 Bouton pour nouvelle conversation */}
-
-
 
             </div>
         </div>
+
     );
 }

@@ -3,6 +3,10 @@
 import ConversationList from "@/components/ConversationList";
 import MessageView from "@/components/MessageView";
 import MessageInput from "@/components/MessageInput";
+import NewConversation from "@/components/NewConversation";
+import NewFriends from "@/components/NewFriends";
+import InfosUser from "@/components/InfosUser";
+import Exit from "@/components/Exit";
 import Image from "next/image";
 import add from "@/public/nui2_127px.png"
 
@@ -15,11 +19,11 @@ import exit from "@/public/exit_127px.png";
 import {useState} from "react";
 
 export default function Page() {
-
-    const handleNewConversation = () => {
-        console.log("Démarrer une nouvelle conversation !");
-    };
     const [openMenu, setOpenMenu] = useState(false);
+    const [showNewConv, setShowNewConv] = useState(false);
+    const [showNewFriends, setShowNewFriends] = useState(false);
+    const [showInfosUser, setShowInfosUser] = useState(false);
+    const [showExit, setShowExit] = useState(false);
 
     const toggleMenu = () => {
         setOpenMenu(!openMenu);
@@ -44,57 +48,13 @@ export default function Page() {
                 <div className=" w-[100%]  p-2  bg-transaprent">
                     <MessageInput/>
                 </div>
-                {/*<button*/}
-                {/*    onClick={handleNewConversation}*/}
-                {/*    className="absolute bottom-8 left-52 bg-blue-600 hover:bg-blue-700 cursor-pointer text-white w-11 h-11 rounded-[13px] flex items-center justify-center shadow-lg transition-transform transform hover:scale-110"*/}
-                {/*>*/}
-                {/*    <Image*/}
-                {/*        src={add.src}*/}
-                {/*        alt="add icon"*/}
-                {/*        width={18}*/}
-                {/*        height={18}*/}
-                {/*        className="object-contain"*/}
-                {/*    />*/}
-                {/*</button>*/}
 
-                {/* 🔵 BOUTON FLOTTANT + MENU */}
-                <div className="absolute bottom-8 left-52 flex flex-col items-center gap-3">
+                <div className="fixed bottom-13 left-50 transform -translate-x-1/2 flex justify-center items-center">
 
-                    {/* --- BOUTONS QUI APPARAISSENT (ANIMATION) --- */}
-                    <div className={`flex flex-col items-center gap-3 transition-all duration-300 
-                        ${openMenu ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}
-                    `}>
-
-                        {/* ℹ️ INFO */}
-
-
-                        {/* 💬 Nouvelle conversation */}
-                        <button
-                            className="w-9 h-9 rounded-[13px] bg-blue-600 hover:bg-blue-700 text-white shadow-lg flex items-center justify-center transition">
-                            <Image src={chatIcon.src} alt="chat" width={18} height={18}/>
-                        </button>
-                        <button
-                            className="w-9 h-9 rounded-[13px] bg-blue-600 hover:bg-blue-700 text-white shadow-lg flex items-center justify-center transition">
-                            <Image src={Newfriends.src} alt="chat" width={20} height={20}/>
-                        </button>
-                        <button
-                            className="w-9 h-9 rounded-[13px] bg-gray-800/90 hover:bg-gray-900 text-white shadow-lg flex items-center justify-center transition">
-                            <Image src={infoIcon.src} alt="info" width={15} height={15}/>
-                        </button>
-
-                        {/* 🚪 Déconnexion */}
-                        <button
-                            className="w-9 h-9 rounded-[13px] bg-red-600 hover:bg-red-700 text-white shadow-lg flex items-center justify-center transition">
-                            <Image src={exit.src} alt="logout" width={15} height={15}/>
-                        </button>
-
-                    </div>
-
-                    {/* --- BOUTON PRINCIPAL (toggle menu) --- */}
+                    {/* --- BOUTON PRINCIPAL --- */}
                     <button
                         onClick={toggleMenu}
-                        className="bg-blue-600 hover:bg-blue-700 cursor-pointer text-white w-11 h-11 rounded-[13px] flex items-center justify-center shadow-xl transition-transform transform hover:scale-110"
-                    //className="absolute bottom-8 left-52 bg-blue-600 hover:bg-blue-700 cursor-pointer text-white w-11 h-11 rounded-[13px] flex items-center justify-center shadow-lg transition-transform transform hover:scale-110"
+                        className="bg-blue-600 hover:bg-blue-700 cursor-pointer text-white w-11 h-11 rounded-[13px] flex items-center justify-center shadow-xl transition-transform transform hover:scale-110 z-20"
                     >
                         <Image
                             src={openMenu ? closeIcon : add}
@@ -103,8 +63,89 @@ export default function Page() {
                             height={18}
                         />
                     </button>
+
+                    {/* --- BOUTONS RADIAUX ANIMÉS --- */}
+                    <div className="absolute top-1 left-1 w-0 h-0">
+                        {[
+                            {icon: chatIcon, color: "bg-green-600", action: () => setShowNewConv(true)},
+                            {icon: Newfriends, color: "bg-blue-600", action: () => setShowNewFriends(true)},
+                            {
+                                icon: infoIcon, color: "bg-[#8000ff]", action: () => { setShowInfosUser(true)
+                                }
+                            },
+                            {
+                                icon: exit, color: "bg-red-500", action: () => {
+                                    setShowExit(true)
+                                }
+                            },
+                        ].map((btn, index) => {
+
+                            const d = 39; // distance diagonale
+
+                            const positions = [
+                                {x: -d, y: -d}, // ↖
+                                {x: d, y: -d}, // ↗
+                                {x: d, y: d}, // ↘
+                                {x: -d, y: d}, // ↙
+                            ];
+
+                            const {x, y} = openMenu ? positions[index] : {x: 0, y: 0};
+
+                            return (
+                                <button
+                                    key={index}
+                                    onClick={() => {
+                                        btn.action();
+                                        toggleMenu();
+                                    }}
+                                    className={`
+          ${btn.color} w-9 h-9 rounded-[13px]
+          text-white shadow-lg flex items-center justify-center
+          absolute transition-all duration-300
+          ${openMenu ? "opacity-100 scale-100" : "opacity-0 scale-50"}
+        `}
+                                    style={{
+                                        transform: `translate(${x}px, ${y}px)`,
+                                        transitionDelay: `${index * 70}ms`,
+                                    }}
+                                >
+                                    <Image src={btn.icon.src} alt="" width={15} height={15}/>
+                                </button>
+                            );
+                        })}
+                    </div>
+
                 </div>
+
+
+
             </div>
+
+
+            {showNewConv && (
+                <>
+                    <NewConversation closeIcon={closeIcon} setShowNewConv={setShowNewConv}/>
+                </>
+
+            )}
+
+            {showNewFriends && (
+                <>
+                    <NewFriends setShowNewFriends={setShowNewFriends}/>
+                </>
+
+            )}{showInfosUser && (
+                <>
+                    <InfosUser setShowInfosUser={setShowInfosUser}/>
+                </>
+
+            )}{showExit && (
+                <>
+                    <Exit setShowExit={setShowExit}/>
+                </>
+
+            )}
+
 
         </div>
     );

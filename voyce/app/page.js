@@ -290,7 +290,7 @@ export default function SplashLogin() {
                                 className="w-48 bg-sky-600 hover:bg-sky-700 text-white font-medium cursor-pointer py-3 rounded-lg transition duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
                                 onClick={() => {
                                     //   e.preventDefault();    // ← Évite le submit automatique
-                                    router.push(`new`)
+                               //     router.push(`new`)
                                 }}>
                                 <FiLock size={16} className="text-white"/>
                                 Connexion
