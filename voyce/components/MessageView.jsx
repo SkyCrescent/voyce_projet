@@ -47,11 +47,7 @@ export default function MessageView() {
 
                     {/* Icône supprimer en rouge */}
                     <div
-                        className="
-                        p-2 rounded-full
-                        hover:bg-gray-300/20
-                        transition cursor-pointer
-                    ">
+                        className="p-2 rounded-full hover:bg-gray-300/20 transition cursor-pointer">
                     <FiTrash2
                         size={18}
                         className="text-gray-700 hover:text-red-500 transition"
@@ -60,11 +56,7 @@ export default function MessageView() {
                 </div>
                     {/* Icône retirer des amis */}
                     <div
-                        className="
-        p-2 rounded-full
-        hover:bg-gray-300/20
-        transition cursor-pointer
-    "
+                        className=" p-2 rounded-full hover:bg-gray-300/20 transition cursor-pointer"
                     >
                         <FiUserMinus
                             size={18}
